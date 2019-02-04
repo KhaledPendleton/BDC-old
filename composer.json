@@ -1,0 +1,18 @@
+{
+    "name": "bdc/main",
+    "authors": [
+        {
+            "name": "Khaled Pendleton",
+            "email": "khaled@binghamton.design"
+        }
+    ],
+    "require": {
+        "tracy/tracy": "^2.5",
+        "nikic/fast-route": "^1.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "BDC\\": "src/"
+        }
+    }
+}
