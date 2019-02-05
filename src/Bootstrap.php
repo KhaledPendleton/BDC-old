@@ -18,6 +18,10 @@ $dispatcher = simpleDispatcher(function(RouteCollector $r) {
 
     // Iterate over route declarations and add them to route collector
     foreach ($routes as $route) {
-        $r->addRoute(...$route);
+        $r->addRoute(
+            $route->getMethod(),
+            $route->getPath(),
+            $route->getCallback()
+        );
     }
 });
