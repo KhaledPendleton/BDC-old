@@ -1,27 +1,55 @@
 <?php declare(strict_types = 1);
 
-// Get directory path for parent of current directory
+// Set constant path for root directory
 define('ROOT_DIR', dirname(__DIR__));
 
-// Reuire autoloader
+// Require autoloader
 require_once(ROOT_DIR . '/vendor/autoload.php');
 
 use Tracy\Debugger;
+use FastRoute\Dispatcher;
 use FastRoute\RouteCollector;
 use function FastRoute\simpleDispatcher;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 Debugger::enable();
 
-$dispatcher = simpleDispatcher(function(RouteCollector $r) {
-    // Gets route declarations
+// Convert PHP globals to single request object
+$request = Request::createFromGlobals();
+
+// Add route declarations to route collector
+$dispatcher = simpleDispatcher(function(RouteCollector $collector) {
     $routes = require_once(ROOT_DIR . '/src/Routes.php');
 
-    // Iterate over route declarations and add them to route collector
     foreach ($routes as $route) {
-        $r->addRoute(
-            $route->getMethod(),
-            $route->getPath(),
-            $route->getCallback()
-        );
+        $collector->addRoute(...$route->toArray());
     }
 });
+
+$routeInfo = $dispatcher->dispatch(
+    $request->getMethod(),
+    $request->getPathInfo()
+);
+
+switch ($routeInfo[0]) {
+    case Dispatcher::NOT_FOUND:
+        // Handle 404
+        break;
+    case Dispatcher::METHOD_NOT_ALLOWED:
+        // Handle 405
+        break;
+    case Dispatcher::FOUND:
+        [$controllerName, $method] = explode('#', $routeInfo[1]);
+        $vars = $routeInfo[2];
+
+        $response = new Response("Page found", Response::HTTP_OK);
+        break;
+}
+
+if (!$response instanceof Response) {
+    throw new \Exception('Controller methods must return a Response object');
+}
+
+$response->prepare($request);
+$response->send();

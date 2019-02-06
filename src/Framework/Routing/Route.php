@@ -28,4 +28,15 @@ class Route
     {
         return $this->callback;
     }
+
+    public function toArray(): array
+    {
+        $temp = array(); 
+
+        $temp[] = $this->getMethod();
+        $temp[] = $this->getPath();
+        $temp[] = $this->getCallback();
+
+        return $temp;
+    }
 }
