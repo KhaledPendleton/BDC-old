@@ -7,6 +7,7 @@ define('ROOT_DIR', dirname(__DIR__));
 require_once(ROOT_DIR . '/vendor/autoload.php');
 
 use Tracy\Debugger;
+use DI\ContainerBuilder;
 use FastRoute\Dispatcher;
 use FastRoute\RouteCollector;
 use function FastRoute\simpleDispatcher;
@@ -43,7 +44,13 @@ switch ($routeInfo[0]) {
         [$controllerName, $method] = explode('#', $routeInfo[1]);
         $vars = $routeInfo[2];
 
-        $response = new Response("Page found", Response::HTTP_OK);
+        // Instantiate and build dependency injector container
+        $builder = new ContainerBuilder();
+        $builder->addDefinitions(ROOT_DIR . '/src/Dependencies.php');
+        $container = $builder->build();
+        $controller = $container->get($controllerName);
+
+        $response = $controller->$method($request, $vars);
         break;
 }
 
