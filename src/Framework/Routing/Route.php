@@ -2,7 +2,7 @@
 
 namespace BDC\Framework\Routing;
 
-class Route
+final class Route
 {
     private $method;
     private $path;

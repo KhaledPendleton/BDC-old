@@ -1,11 +1,12 @@
 <?php declare(strict_types = 1);
 
-namespace BDC\FrontPage\Presentation;
+namespace BDC\Error\Presentation;
 
 use Symfony\Component\HttpFoundation\Response;
 use BDC\Framework\Rendering\TemplateRenderer;
+use BDC\Error\Application\NotFoundError;
 
-final class FrontPageController
+final class NotFoundController
 {
     private $templateRenderer;
 
@@ -15,7 +16,10 @@ final class FrontPageController
 
     public function show(): Response
     {
-        $content = $this->templateRenderer->render('Pages/Index.html');
-        return new Response($content, Response::HTTP_OK);
+        $data = array();
+        $data['error'] = NotFoundError::create();
+        
+        $content = $this->templateRenderer->render('Pages/Error.html', $data);
+        return new Response($content, Response::HTTP_NOT_FOUND);
     }
 }

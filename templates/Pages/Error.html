@@ -1,0 +1,8 @@
+{% extends "Layouts/Base.html" %}
+
+{% block title %}Ooh no!{% endblock %}
+
+{% block content %}
+    <h1>Error {{ error.getCode() }}</h1>
+    <p>{{ error.getMessage() }}</p>
+{% endblock %}

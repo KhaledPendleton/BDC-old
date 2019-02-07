@@ -19,6 +19,11 @@ Debugger::enable();
 // Convert PHP globals to single request object
 $request = Request::createFromGlobals();
 
+// Instantiate and build dependency injector container
+$builder = new ContainerBuilder();
+$builder->addDefinitions(ROOT_DIR . '/src/Dependencies.php');
+$container = $builder->build();
+
 // Add route declarations to route collector
 $dispatcher = simpleDispatcher(function(RouteCollector $collector) {
     $routes = require_once(ROOT_DIR . '/src/Routes.php');
@@ -36,20 +41,19 @@ $routeInfo = $dispatcher->dispatch(
 switch ($routeInfo[0]) {
     case Dispatcher::NOT_FOUND:
         // Handle 404
+        $controller = $container->get('BDC\Error\Presentation\NotFoundController');
+        $response = $controller->show();
         break;
     case Dispatcher::METHOD_NOT_ALLOWED:
         // Handle 405
+        $controller = $container->get('BDC\Error\Presentation\MethodNotAllowedController');
+        $response = $controller->show();
         break;
     case Dispatcher::FOUND:
         [$controllerName, $method] = explode('#', $routeInfo[1]);
         $vars = $routeInfo[2];
 
-        // Instantiate and build dependency injector container
-        $builder = new ContainerBuilder();
-        $builder->addDefinitions(ROOT_DIR . '/src/Dependencies.php');
-        $container = $builder->build();
         $controller = $container->get($controllerName);
-
         $response = $controller->$method($request, $vars);
         break;
 }
