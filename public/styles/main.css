@@ -1,1 +1,127 @@
-/* Styles */
+:root {
+    --yellow: rgb(253, 214, 62);
+    --instagram-grey: rgb(35, 31, 32);
+}
+
+.wrapper,
+.nav--main {
+    --padding-x: 1.5rem;
+}
+
+.logo {
+    /* Logo visible on mobile */
+    --display: initial;
+}
+
+.wordmark {
+    /* Wordmark hidden on mobile */
+    --display: none;
+}
+
+@media screen and (min-width: 850px) {
+    .nav--main {
+        --padding-x: 2rem;
+    }
+
+    .logo {
+        /* Logo hidden on desktop */
+        --display: none;
+    }
+
+    .wordmark {
+        /* Wordmark visible on desktop */
+        --display: initial;
+    }
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100%;
+    font-size: 100%; /* Uses current browser settings */
+    font-family: Helvetica, Arial, sans-serif; /* TODO: change to univers */
+    color: var(--instagram-grey);
+}
+
+.btn {
+    background: none;
+    border: none;
+    font-size: inherit;
+    cursor: pointer;
+}
+
+.nav {
+    width: 100%; /* Every nav should fill its container */
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.header {
+    background-color: var(--yellow);
+}
+
+.wrapper {
+    width: calc(100% - calc(2 * var(--padding-x)));
+    padding: 0 var(--padding-x);
+}
+
+.nav--main {
+    /* background: salmon; */
+    /* width: calc(100% - calc(2 * var(--padding-x))); */
+    height: 3rem;
+    padding: 1rem 0;
+    margin: auto;
+    justify-content: space-between;
+    border-bottom-color: inherit;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+}
+
+.nav-controls {
+    height: inherit;
+    font-size: 1.75rem;
+    flex-shrink: 0;
+    display: flex;
+}
+
+.nav-controls .link {
+    width: auto;
+    height: inherit;
+    text-decoration: none;
+    color: inherit;
+}
+
+.nav-controls img {
+    width: auto;
+    height: 100%;
+}
+
+.nav-controls .btn {
+    height: 100%;
+}
+
+.site-brand {
+    font-size: 3rem;
+}
+
+.logo, .wordmark {
+    display: var(--display);
+}
+
+.nav-controls .search-icon {
+    height: 50%;
+    padding: 0 10px;
+    position: relative;
+    /* Center vertically */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.nav-list {
+    width: 100%;
+    padding: 0;
+    list-style: none;
+}
