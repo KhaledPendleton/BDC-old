@@ -15,7 +15,7 @@ final class FrontPageController
 
     public function show(): Response
     {
-        $content = $this->templateRenderer->render('Pages/Index.html');
+        $content = $this->templateRenderer->render('Pages/FrontPage.html');
         return new Response($content, Response::HTTP_OK);
     }
 }
