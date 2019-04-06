@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 // Internal packages
-use Flock\Framework\Routing\Route;
+use BDC\Framework\Routing\Route;
 
 Debugger::enable();
 
