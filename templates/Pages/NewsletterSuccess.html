@@ -7,7 +7,11 @@ SUCCESS
 {% block content %}
 <main class="u-fixed u-absolute--center">
     <div class="messageBox">
-        <h2 class="u-textAlign--center messageBox-title">Thank you</h2>
+        {% if firstName %}
+            <h2 class="u-textAlign--center messageBox-title">Thank you, {{ firstName }}</h2>
+        {% else %}
+            <h2 class="u-textAlign--center messageBox-title">Thank you</h2>
+        {% endif %}
         <p class="u-textAlign--center messageBox-content">You have successfully subscribed to the Binghamton Design Collective newsletter.</p>
     </div>
 </main>
