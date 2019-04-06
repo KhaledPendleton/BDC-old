@@ -1,8 +1,14 @@
 {% extends "Layouts/Default.html" %}
 
-{% block title %}Ooh no!{% endblock %}
+{% block title %}
+NOT FOUND
+{% endblock %}
 
 {% block content %}
-    <h1>Error {{ error.getCode() }}</h1>
-    <p>{{ error.getMessage() }}</p>
+<main class="u-fixed u-absolute--center">
+    <div class="messageBox">
+        <h2 class="u-textAlign--center messageBox-title">Error {{ error.getCode() }}</h2>
+        <p class="u-textAlign--center messageBox-content">{{ error.getMessage() }}</p>
+    </div>
+</main>
 {% endblock %}
