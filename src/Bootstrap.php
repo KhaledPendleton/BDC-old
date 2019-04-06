@@ -47,6 +47,12 @@ if (false !== $position = strpos($requestPath, '?')) {
 $requestPath = rawurldecode($requestPath);
 $routeInfo = $dispatcher->dispatch($requestMethod, $requestPath);
 
+// Build dependency container BEFORE its use in routing
+$definitions = require_once(ROOT_DIR . '/src/Dependencies.php');
+$builder = new ContainerBuilder();
+$builder->addDefinitions($definitions);
+$container = $builder->build();
+
 switch ($routeInfo[0]) {
     case Dispatcher::NOT_FOUND:
         // Handle 404
@@ -61,11 +67,6 @@ switch ($routeInfo[0]) {
     case Dispatcher::FOUND:
         [$controllerName, $method] = explode('#', $routeInfo[1]);
         $vars = $routeInfo[2];
-
-        $definitions = require_once(ROOT_DIR . '/src/Dependencies.php');
-        $builder = new ContainerBuilder();
-        $builder->addDefinitions($definitions);
-        $container = $builder->build();
 
         $controller = $container->get($controllerName);
         $response = $controller->$method($request, $vars);
