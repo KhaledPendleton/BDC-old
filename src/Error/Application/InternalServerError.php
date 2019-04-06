@@ -8,6 +8,6 @@ class InternalServerError extends HttpError
 {
     public static function create(): InternalServerError
     {
-        return new InternalServerError(500, 'The server encountered an unexpected condition that prevented it from fulfilling the request.');
+        return new InternalServerError(500, 'INTERNAL SERVER ERROR', 'The server encountered an unexpected condition that prevented it from fulfilling the request.');
     }
 }

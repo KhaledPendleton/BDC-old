@@ -8,6 +8,6 @@ class MethodNotAllowedError extends HttpError
 {
     public static function create(): MethodNotAllowedError
     {
-        return new MethodNotAllowedError(405, 'The method received in the request-line is known by the origin server but not supported by the target resource.');
+        return new MethodNotAllowedError(405, 'METHOD NOT ALLOWED', 'The method received in the request-line is known by the origin server but not supported by the target resource.');
     }
 }

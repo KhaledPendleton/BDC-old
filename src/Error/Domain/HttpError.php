@@ -6,16 +6,23 @@ namespace BDC\Error\Domain;
 class HttpError
 {
     private $code;
+    private $title;
     private $message;
 
-    public function __construct(int $code, string $message) {
+    public function __construct(int $code, string $title, string $message) {
         $this->code = $code;
+        $this->title = $title;
         $this->message = $message;
     }
 
     public function getCode(): int
     {
         return $this->code;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
     }
 
     public function getMessage(): string

@@ -8,6 +8,6 @@ class NotFoundError extends HttpError
 {
     public static function create(): NotFoundError
     {
-        return new NotFoundError(404, 'The origin server did not find a current representation for the target resource or is not willing to disclose that one exists.');
+        return new NotFoundError(404, 'NOT FOUND', 'The origin server did not find a current representation for the target resource or is not willing to disclose that one exists.');
     }
 }
