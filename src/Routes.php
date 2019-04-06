@@ -8,6 +8,6 @@ $routes = array();
 $routes[] = new Route(HttpMethod::GET, '/', 'BDC\FrontPage\Presentation\FrontPageController#show');
 $routes[] = new Route(HttpMethod::GET, '/newsletter', 'BDC\Newsletter\Presentation\NewsletterController#show');
 $routes[] = new Route(HttpMethod::GET, '/newsletter/success', 'BDC\Newsletter\Presentation\NewsletterController#success');
-$routes[] = new Route(HttpMethod::POST, '/newsletter/signup', 'BDC\Newsletter\Presentation\NewsletterController#signup');
+$routes[] = new Route(HttpMethod::POST, '/newsletter/subscribe', 'BDC\Newsletter\Presentation\NewsletterController#subscribe');
 
 return $routes;
