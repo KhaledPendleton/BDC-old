@@ -48,7 +48,7 @@ final class NewsletterController
         }
 
         $firstName = $request->get('first-name');
-        $response = new RedirectResponse('/newsletter/success?first_name='.$firstName);
+        $response = new RedirectResponse('/newsletter/success?first-name='.$firstName);
         return $response;
     }
 }

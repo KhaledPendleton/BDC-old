@@ -2,13 +2,22 @@
 
 namespace BDC\Newsletter\Presentation;
 
+use BDC\Newsletter\Application\EmailSubscribedQuery;
+
 final class SubscribeForm
 {
+    private $emailSubscribedQuery;
     private $firstName;
     private $lastName;
     private $email;
 
-    public function __construct(string $firstName, string $lastName, string $email) {
+    public function __construct(
+        EmailSubscribedQuery $emailSubscribedQuery,
+        string $firstName,
+        string $lastName,
+        string $email
+    ) {
+        $this->emailSubscribedQuery = $emailSubscribedQuery;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->email = $email;
@@ -30,9 +39,9 @@ final class SubscribeForm
             $errors[] = 'Email provided is not valid.';
         }
 
-        // if ($this->emailSubscribedQuery->execute($this->email)) {
-        //     $errors[] = 'This email is already subscribed to our newsletter.';
-        // }
+        if ($this->emailSubscribedQuery->execute($this->email)) {
+            $errors[] = 'This email is already subscribed to our newsletter.';
+        }
 
         return $errors;
     }
