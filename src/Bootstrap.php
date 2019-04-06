@@ -78,7 +78,8 @@ switch ($routeInfo[0]) {
 }
 
 if (!$response instanceof Response) {
-    throw new \Exception('Controller methods must return a Response object');
+    $controller = $container->get('BDC\Error\Presentation\InternalServerErrorController');
+    $response = $controller->show();
 }
 
 $response->prepare($request);

@@ -2,6 +2,7 @@
 
 namespace BDC\Error\Domain;
 
+// Messages derived from - https://httpstatuses.com
 class HttpError
 {
     private $code;
