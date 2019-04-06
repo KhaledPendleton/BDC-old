@@ -22,7 +22,7 @@ final class NewsletterController
 
     public function success(Request $request, array $vars): Response
     {
-        $firstName = ucwords($request->query->get('first_name', ''));
+        $firstName = ucwords($request->query->get('first-name', ''));
         $content = $this->templateRenderer->render(
             'Pages/NewsletterSuccess.html',
             array('firstName' => $firstName)
@@ -34,7 +34,7 @@ final class NewsletterController
 
     public function subscribe(Request $request, array $vars): Response
     {
-        $firstName = $request->get('first_name');
+        $firstName = $request->get('first-name');
         $response = new RedirectResponse('/newsletter/success?first_name='.$firstName);
         return $response;
     }
