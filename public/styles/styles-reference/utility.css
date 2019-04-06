@@ -1,0 +1,48 @@
+/* Text & Font
+-------------------------------------------------- */
+.u-textTransform--Capitalize { text-transform: capitalize; }
+.u-textTransform--Uppercase { text-transform: uppercase; }
+
+.u-textAlign--center { text-align: center; }
+.u-textDecoration--linethrough { text-decoration: line-through; }
+
+/* Position
+-------------------------------------------------- */
+.u-absolute { position: absolute; }
+.u-fixed { position: fixed; }
+.u-relative { position: relative; }
+
+/* Display
+-------------------------------------------------- */
+.u-block { display: block; }
+.u-flex { display: flex; }
+.u-grid { display: grid; }
+.u-inlineBlock { display: inline-block; }
+.u-hidden { display: none; }
+
+/* Flex
+-------------------------------------------------- */
+.u-flexJustifyContent--center { justify-content: center; }
+.u-flexJustifyContent--spaceBetween { justify-content: space-between; }
+.u-flexAlignItems--center { align-items: center; }
+.u-flexWrap { flex-wrap: wrap; }
+
+/* Overflow
+-------------------------------------------------- */
+.u-noOverflow { overflow: hidden; }
+.u-noOverflowX { overflow-x: hidden; }
+.u-noOverflowY { overflow-y: hidden; }
+
+.u-allowOverflowY { overflow-y: scroll; }
+
+/* Pointer Events
+-------------------------------------------------- */
+.u-pointerEvent--auto { pointer-events: auto; }
+.u-pointerEvent--none { pointer-events: none; }
+
+/* Default Styling
+-------------------------------------------------- */
+.u-fillView { height: 100vh; width: 100vw; }
+.u-noBorder { border: none; }
+.u-noBackground { background: none; }
+.u-cursor--pointer { cursor: pointer; }

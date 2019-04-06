@@ -1,0 +1,152 @@
+html,
+body,
+h1, h2, h3,
+p, label,
+input {
+    margin: 0;
+    padding: 0;
+}
+
+.body {
+    width: 100%;
+    background-color: var(--color-black);
+    color: var(--color-white--text);
+    font-size: var(--fontSize-base);
+    font-family: var(--fontFamily-museo--sans);
+}
+
+.topNav,
+.projectLabel {
+    width: calc(100% - calc(2 * var(--paddingX)));
+    padding: var(--paddingY) var(--paddingX);
+}
+
+.topNav {
+    height: 3rem;
+    top: 0; left: 0;
+    z-index: var(--zIndex-6--topNav);
+    justify-content: space-between;
+}
+
+.projectLabel {
+    bottom: 0; left: 0;
+}
+
+.projectLabel--text {
+    font-size: var(--fontSize-largest);
+    font-weight: var(--fontWeight-bold);
+}
+
+.logo {
+    height: 100%;
+}
+
+.btn {
+    padding: 0;
+    font-family: var(--fontFamily-museo--sans);
+}
+
+.btn:hover {
+    color: var(--color-red-text);
+}
+
+.btn--form,
+.btn--nav {
+    color: var(--color-white--text);
+}
+
+.btn--form {
+    padding: var(--paddingY--text) calc(var(--paddingX--text) * 2);
+    font-size: var(--fontSize-base);
+    background-color: var(--color-white--background);
+}
+
+.btn--nav {
+    font-size: var(--fontSize-large);
+}
+
+.image {
+    width: auto;
+    height: 100%;
+}
+
+.thumbnail {
+    height: 300px;
+    max-height: 300px;
+    max-width: 600px;
+    z-index: var(--zIndex-2--thumbnail);
+    transition: all 0.5s; /* TODO: START HERE */
+    transition-timing-function: ease-out;
+}
+
+.thumbnail:hover {
+    z-index: var(--zIndex-2--thumbnailHover);
+}
+
+.thumbnail-image {
+    opacity: 0.4;
+}
+
+.thumbnail-image:hover {
+    opacity: 1;
+}
+
+.modal {
+    background: var(--color-black--background);
+    z-index: var(--zIndex-4--modal);
+}
+
+.modal-content {
+    width: calc(100% - calc(2 * var(--paddingX))); /* SAME AS NAVBAR AND PROJECT LABEL */
+    margin: auto;
+    padding-top: calc(6 * var(--paddingY));
+    padding-bottom: var(--paddingY);
+    animation-name: fadeIn, textIn;
+    animation-duration: 0.75s;
+}
+
+.modal-content > p {
+    font-size: var(--fontSize-jumbo);
+    margin-bottom: calc(var(--paddingY--text) * 4);
+}
+
+.border {
+    border-width: var(--borderWidth--base);
+    border-style: var(--borderStyle);
+    border-color: var(--color-white--border);
+}
+
+form {
+    width: 50%;
+}
+
+form > .header {
+    margin-bottom: var(--paddingY);
+}
+
+form .header-headline {
+    font-size: var(--fontSize-larger);
+    font-weight: var(--fontWeight-base);
+}
+
+form > p {
+    width: 100%;
+    margin-bottom: var(--paddingY);
+}
+
+form > p.half {
+    width: calc(calc(50% - var(--paddingX)));
+}
+
+form > p.half:nth-child(even) {
+    margin-right: calc(var(--paddingX) * 2);
+}
+
+[type="text"],
+[type="email"] {
+    width: calc(100% - calc(var(--paddingX--text) * 2));
+    padding: var(--paddingY--text) var(--paddingX--text);
+    font-size: var(--fontSize-base);
+    color: var(--color-white--text);
+    background-color: var(--color-white--background);
+}

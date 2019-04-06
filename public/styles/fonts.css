@@ -1,0 +1,13 @@
+/* Fonts
+-------------------------------------------------- */
+
+@font-face {
+    font-family: Univers;
+    src: url(../fonts/Univers-Extended.ttf)
+}
+
+@font-face {
+    font-family: Univers;
+    font-weight: 700;
+    src: url(../fonts/Univers-BlackExt.ttf)
+}

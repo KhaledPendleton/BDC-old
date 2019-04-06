@@ -1,0 +1,64 @@
+:root {
+    /* Z-Index Scale
+    -------------------------------------------------- */
+    --zIndex-1: 100;
+    --zIndex-2: 200;
+    --zIndex-3: 300;
+    --zIndex-4: 400;
+    --zIndex-5: 500;
+    --zIndex-6: 600;
+    --zIndex-7: 700;
+    --zIndex-8: 800;
+    --zIndex-9: 900;
+    --zIndex-10: 1000;
+
+    --zIndex-2--thumbnail: var(--zIndex-2);
+    --zIndex-2--thumbnailHover: calc(50 + var(--zIndex-2--thumbnail));
+    --zIndex-4--modal: var(--zIndex-4);
+    --zIndex-6--topNav: var(--zIndex-6);
+
+    /* Color Scheme
+    -------------------------------------------------- */
+    --color-black: rgba(0, 0, 0, 0.95);
+    --color-white: rgba(255, 255, 255, 1);
+    --color-red: rgba(230, 39, 27, 1);
+    --color-navy: rgba(1, 6, 60, 0.6);
+
+    --color-black--background: var(--color-black);
+    --color-white--background: rgba(255, 255, 255, 0.2);
+    --color-white--text: var(--color-white);
+    --color-white--border: var(--color-white);
+    --color-red-text: var(--color-red);
+
+    /* Fonts
+    -------------------------------------------------- */
+    --fontFamily-museo--sans: museo-sans, sans-serif;
+
+    --fontSize-smallest: calc(var(--fontSize-base) * 0.5);
+    --fontSize-smaller: calc(var(--fontSize-base) * 0.75);
+    --fontSize-small: calc(var(--fontSize-base) * 0.85);
+    --fontSize-base: 100%;
+    --fontSize-large: calc(var(--fontSize-base) * 1.15);
+    --fontSize-larger: calc(var(--fontSize-base) * 1.25);
+    --fontSize-largest: calc(var(--fontSize-base) * 1.5);
+    --fontSize-jumbo: calc(var(--fontSize-base) * 2.5);
+
+    --fontWeight-base: 300;
+    --fontWeight-bold: 700;
+
+    --fontStyle-normal: normal;
+    --fontStyle-italic: italic;
+
+    /* Spacing
+    -------------------------------------------------- */
+    --paddingX: 1.5rem;
+    --paddingY: 1.5rem;
+
+    --paddingX--text: calc(1em / 4);
+    --paddingY--text: calc(1em / 2);
+
+    /* Borders
+    -------------------------------------------------- */
+    --borderWidth--base: 1px;
+    --borderStyle: solid;
+}

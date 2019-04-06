@@ -1,32 +1,23 @@
-{% extends "Layouts/Base.html" %}
+{% extends 'layouts/Default.html' %}
 
-{% block title %}All Design{% endblock %}
-
-{% block head %}
-    {{ parent() }}
-    <link rel="stylesheet" href="styles/index.css" />
+{% block title %}
+    COMING SOON
 {% endblock %}
 
 {% block content %}
-    <header class="header">
-        <div class="wrapper">
-            <nav class="nav nav--main" role="navigation">
-                <div class="nav-controls site-brand">
-                    <a href="/" class="link">
-                        <img src="img/logo-main.svg" alt="BDC logo" class="logo" />
-                        <span class="wordmark">Binghamton Design Collective</span>
-                    </a>
-                </div>
-                <div class="nav-controls">
-                    <a href="/search" class="link"><img src="img/mag-glass.svg" alt="Search icon" class="search-icon"></a>
-                    <button class="btn">Menu</button>
-                </div>
-                <ul class="nav-controls nav-list">
-                    <li><a href="/story">Story</a></li>
-                    <li><a href="/insights">Insights</a></li>
-                    <li><a href="/people">People</a></li>
-                </ul>
-            </nav>
-        </div>
+<main class="u-fixed u-absolute--center">
+    <header class="logoBox u-textAlign--center">
+        <img class="logo" src="images/bdc-full.svg" alt="Binghamton Design Collective" />
     </header>
+    <div class="messageBox">
+        <h2 class="u-textAlign--center messageBox-title">Coming Soon</h2>
+        <p class="u-textAlign--center messageBox-content">Sign up to get updates about our site’s launch.</p>
+    </div>
+    <form action="#" method="POST">
+        <input class="u-noBackground u-border u-boxSizing--borderBox half" type="text" name="first_name" placeholder="First Name" /><!-- REQUIRED BETWEEN EVERY .HALF INLINE BLOCK
+        --><input class="u-noBackground u-border u-boxSizing--borderBox half" type="text" name="last_name" placeholder="Last Name" />
+        <input class="u-noBackground u-border u-boxSizing--borderBox" type="email" name="email" placeholder="Email" />
+        <input class="u-block u-noBackground u-border u-cursor--pointer" type="submit" value="SIGN UP" />
+    </form>
+</main>
 {% endblock %}

@@ -1,0 +1,68 @@
+:root {
+    /* Z-Index Scale
+    -------------------------------------------------- */
+    --zIndex-1: 100;
+    --zIndex-2: 200;
+    --zIndex-3: 300;
+    --zIndex-4: 400;
+    --zIndex-5: 500;
+    --zIndex-6: 600;
+    --zIndex-7: 700;
+    --zIndex-8: 800;
+    --zIndex-9: 900;
+    --zIndex-10: 1000;
+
+    /* Color Scheme
+    -------------------------------------------------- */
+    --color-black: rgba(0, 0, 0, 1);
+    --color-darkGray: rgba(50, 50, 50, 1);
+    --color-gray: rgba(167, 167, 167, 1);
+    --color-white: rgba(255, 255, 255, 1);
+
+    --color-yellow: rgba(245, 207, 0, 1);
+    --color-yellowGray: rgba(211, 181, 26, 1);
+    --color-yellowDarkGray: rgba(137, 122, 41, 1);
+    /* Yellow primary is actually black */
+
+    --color-background: var(--color-black);
+    --color-fade: var(--color-dark-gray); /* Decorative text/ elements */
+    --color-subtitle: var(--color-gray);
+    --color-primary: var(--color-white);
+
+    /* Fonts
+    -------------------------------------------------- */
+    --fontFamily-univers: 'Univers', sans-serif;
+
+    --fontSize-base: 100%;
+
+    --fontWeight-base: 400;
+    --fontWeight-bold: 700;
+
+    --fontStyle-normal: normal;
+    --fontStyle-italic: italic;
+
+    /* Spacing
+    -------------------------------------------------- */
+    --spacingX: 1rem;
+    --spacingY: 1rem;
+
+    --paddingX--text: .6em;
+    --paddingY--text: .6em;
+
+    --lineHeight: 1.5em;
+
+    /* Borders
+    -------------------------------------------------- */
+    --borderWidth--base: 1px;
+    --borderStyle: solid;
+}
+
+/* Themes
+-------------------------------------------------- */
+
+.theme--yellow {
+    --color-background: var(--color-yellow);
+    --color-fade: var(--color-yellowGray);
+    --color-subtitle: var(--color-yellowDarkGray);
+    --color-primary: var(--color-black);
+}
