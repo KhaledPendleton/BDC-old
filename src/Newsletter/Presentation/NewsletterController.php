@@ -11,9 +11,14 @@ use BDC\Framework\Rendering\TemplateRenderer;
 final class NewsletterController
 {
     private $templateRenderer;
+    private $subscribeFormFactory;
 
-    public function __construct(TemplateRenderer $templateRenderer) {
+    public function __construct(
+        TemplateRenderer $templateRenderer,
+        SubscribeFormFactory $subscribeFormFactory
+    ) {
         $this->templateRenderer = $templateRenderer;
+        $this->subscribeFormFactory = $subscribeFormFactory;
     }
     
     // Show current newsletter
@@ -34,6 +39,14 @@ final class NewsletterController
 
     public function subscribe(Request $request, array $vars): Response
     {
+        $form = $this->subscribeFormFactory->createFromRequest($request);
+
+        if ($form->hasValidationErrors()) {
+            $errors = $form->getValidationErrors();
+            // TODO: Handle this
+            return new Response('error', Response::HTTP_NOT_ACCEPTABLE);
+        }
+
         $firstName = $request->get('first-name');
         $response = new RedirectResponse('/newsletter/success?first_name='.$firstName);
         return $response;
