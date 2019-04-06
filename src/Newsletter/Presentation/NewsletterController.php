@@ -22,7 +22,7 @@ final class NewsletterController
 
     public function success(Request $request, array $vars): Response
     {
-        $firstName = ucwords($request->query->get('first_name'));
+        $firstName = ucwords($request->query->get('first_name', ''));
         $content = $this->templateRenderer->render(
             'Pages/NewsletterSuccess.html',
             array('firstName' => $firstName)
