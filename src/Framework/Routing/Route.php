@@ -6,36 +6,22 @@ final class Route
 {
     private $method;
     private $path;
-    private $callback;
+    private $controller;
 
-    public function __construct(string $method, string $path, string $callback) {
+    public function __construct(string $method, string $path, string $controller) {
         $this->method = $method;
         $this->path = $path;
-        $this->callback = $callback;
+        $this->controller = $controller;
     }
 
-    public function getMethod(): string
+    public function toArray()
     {
-        return $this->method;
-    }
+        $temp = array();
 
-    public function getPath(): string
-    {
-        return $this->path;
-    }
-
-    public function getCallback(): string
-    {
-        return $this->callback;
-    }
-
-    public function toArray(): array
-    {
-        $temp = array(); 
-
-        $temp[] = $this->getMethod();
-        $temp[] = $this->getPath();
-        $temp[] = $this->getCallback();
+        // ORDER COUNTS
+        $temp[] = $this->method;
+        $temp[] = $this->path;
+        $temp[] = $this->controller;
 
         return $temp;
     }
