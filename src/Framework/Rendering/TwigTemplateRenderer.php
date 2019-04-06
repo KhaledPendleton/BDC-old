@@ -2,18 +2,18 @@
 
 namespace BDC\Framework\Rendering;
 
-use Twig_Environment;
+use Twig\Environment;
 
 class TwigTemplateRenderer implements TemplateRenderer
 {
-    private $twigEnvironment;
+    private $environment;
 
-    public function __construct(Twig_Environment $twigEnvironment) {
-        $this->twigEnvironment = $twigEnvironment;
+    public function __construct(Environment $environment) {
+        $this->environment = $environment;
     }
 
-    public function render(string $template, array $data = []): string
+    public function render(string $template, array $vars = []): string
     {
-        return $this->twigEnvironment->render($template, $data);
+        return $this->environment->render($template, $vars);
     }
 }

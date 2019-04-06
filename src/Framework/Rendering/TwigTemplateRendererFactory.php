@@ -2,8 +2,8 @@
 
 namespace BDC\Framework\Rendering;
 
-use Twig_Loader_Filesystem;
-use Twig_Environment;
+use Twig\Loader\FilesystemLoader;
+use Twig\Environment;
 
 final class TwigTemplateRendererFactory
 {
@@ -13,12 +13,11 @@ final class TwigTemplateRendererFactory
         $this->templateDirectory = $templateDirectory;
     }
 
-    public function create(): TemplateRenderer
+    public function create(): TwigTemplateRenderer
     {
-        $templateDirectory = $this->templateDirectory->toString();
-        $loader = new Twig_Loader_Filesystem($templateDirectory);
-        $twig = new Twig_Environment($loader, array());
-        
-        return new TwigTemplateRenderer($twig);
+        $loader = new FilesystemLoader($this->templateDirectory->toString());
+        $environment = new Environment($loader);
+
+        return new TwigTemplateRenderer($environment);
     }
 }
