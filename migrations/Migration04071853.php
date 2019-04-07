@@ -35,5 +35,4 @@ final class Migration04071853
         $table->addColumn('email', Type::STRING);
         $table->addColumn('subscribed_on', Type::DATETIME);
     }
-
 }

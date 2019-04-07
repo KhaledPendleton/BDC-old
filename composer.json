@@ -17,7 +17,8 @@
     },
     "autoload": {
         "psr-4": {
-            "BDC\\": "src/"
+            "BDC\\": "src/",
+            "Migrations\\": "migrations/"
         }
     }
 }
