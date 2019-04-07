@@ -12,20 +12,20 @@ final class Subscriber
     private $firstName;
     private $lastName;
     private $email;
-    private $subscribedOn;
+    private $subscriptionDate;
 
     public function __construct(
         UuidInterface $id,
         string $firstName,
         string $lastName,
         string $email,
-        DateTimeImmutable $subscribedOn
+        DateTimeImmutable $subscriptionDate
     ) {
         $this->id = $id;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->email = $email;
-        $this->subscribedOn = $subscribedOn;
+        $this->subscriptionDate = $subscriptionDate;
     }
 
     public static function subscribe(string $firstName, string $lastName, string $email): Subscriber
@@ -59,8 +59,8 @@ final class Subscriber
         return $this->Email;
     }
 
-    public function getSubscribedOn(): DateTimeImmutable
+    public function getSubscriptionDate(): DateTimeImmutable
     {
-        return $this->subscribedOn;
+        return $this->subscriptionDate;
     }
 }

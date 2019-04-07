@@ -26,8 +26,8 @@ final class DbalSubscriberRepository implements SubscriberRepository
             'first_name' => $queryBuilder->createNamedParameter($subscriber->getFirstName()),
             'last_name' => $queryBuilder->createNamedParameter($subscriber->getLastName()),
             'email' => $queryBuilder->createNamedParameter($subscriber->getEmail()),
-            'subscribed_on' => $queryBuilder->createNamedParameter(
-                $subscriber->getSubscribedOn(), 
+            'subscription_date' => $queryBuilder->createNamedParameter(
+                $subscriber->getSubscriptionDate(), 
                 Type::DATETIME
             )
         ));
@@ -43,7 +43,7 @@ final class DbalSubscriberRepository implements SubscriberRepository
         $queryBuilder->addSelect('first_name');
         $queryBuilder->addSelect('last_name');
         $queryBuilder->addSelect('email');
-        $queryBuilder->addSelect('subscribed_on');
+        $queryBuilder->addSelect('subscription_date');
         $queryBuilder->from('subscriber');
         $queryBuilder->where("email = {$queryBuilder->createNamedParameter($email)}");
 
@@ -68,7 +68,7 @@ final class DbalSubscriberRepository implements SubscriberRepository
             $row['first_name'],
             $row['last_name'],
             $row['email'],
-            new DateTimeImmutable($row['subscribed_on'])
+            new DateTimeImmutable($row['subscription_date'])
         );
     }
 }
