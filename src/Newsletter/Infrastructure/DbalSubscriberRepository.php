@@ -16,6 +16,25 @@ final class DbalSubscriberRepository implements SubscriberRepository
         $this->connection = $connection;
     }
 
+    public function add(Subscriber $subscriber): void
+    {
+        $queryBuilder = $this->connection->createQueryBuilder();
+
+        $queryBuilder->insert('subscriber');
+        $queryBuilder->values(array(
+            'id' => $queryBuilder->createNamedParameter($subscriber->getId()->toString()),
+            'first_name' => $queryBuilder->createNamedParameter($subscriber->getFirstName()),
+            'last_name' => $queryBuilder->createNamedParameter($subscriber->getLastName()),
+            'email' => $queryBuilder->createNamedParameter($subscriber->getEmail()),
+            'subscribed_on' => $queryBuilder->createNamedParameter(
+                $subscriber->getSubscribedOn(), 
+                Type::DATETIME
+            )
+        ));
+
+        $queryBuilder->execute();
+    }
+
     public function findByEmail(string $email): ?Subscriber
     {
         $queryBuilder = $this->connection->createQueryBuilder();
