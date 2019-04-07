@@ -7,6 +7,7 @@ use function DI\get;
 // Interfaces
 use BDC\Framework\Rendering\TemplateRenderer;
 use BDC\Newsletter\Application\EmailSubscribedQuery;
+use BDC\Newsletter\Domain\SubscriberRepository;
 
 // Factories
 use BDC\Framework\Rendering\TwigTemplateRendererFactory;
@@ -14,6 +15,7 @@ use BDC\Framework\Rendering\TwigTemplateRendererFactory;
 // Implementable Classes
 use BDC\Framework\Rendering\TemplateDirectory;
 use BDC\Newsletter\Infrastructure\DbalEmailSubscribedQuery;
+use BDC\Newsletter\Domain\DbalSubscriberRepository;
 
 $dependencies = array();
 
@@ -24,5 +26,6 @@ $dependencies[TemplateRenderer::class] = factory([TwigTemplateRendererFactory::c
 
 // Newsletter
 $dependencies[EmailSubscribedQuery::class] = get(DbalEmailSubscribedQuery::class);
+$dependencies[SubscriberRepository::class] = get(DbalSubscriberRepository::class);
 
 return $dependencies;
