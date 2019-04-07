@@ -3,7 +3,10 @@
 namespace BDC\Newsletter\Infrastructure;
 
 use Doctrine\DBAL\Connection;
+use Ramsey\Uuid\Uuid;
+
 use BDC\Newsletter\Domain\SubscriberRepository;
+use BDC\Newsletter\Domain\Subscriber;
 
 final class DbalSubscriberRepository implements SubscriberRepository
 {
@@ -13,7 +16,7 @@ final class DbalSubscriberRepository implements SubscriberRepository
         $this->connection = $connection;
     }
 
-    public function findByEmail(string $email)
+    public function findByEmail(string $email): ?Subscriber
     {
         $queryBuilder = $this->connection->createQueryBuilder();
 
@@ -21,6 +24,7 @@ final class DbalSubscriberRepository implements SubscriberRepository
         $queryBuilder->addSelect('first_name');
         $queryBuilder->addSelect('last_name');
         $queryBuilder->addSelect('email');
+        $queryBuilder->addSelect('subscribed_on');
         $queryBuilder->from('subscriber');
         $queryBuilder->where("email = {$queryBuilder->createNamedParameter($email)}");
 
@@ -31,6 +35,21 @@ final class DbalSubscriberRepository implements SubscriberRepository
             return null;
         }
 
-        return $row;
+        return $this->createFromRow($row);
+    }
+
+    public function createFromRow(array $row): ?Subscriber
+    {
+        if (!$row) {
+            return null;
+        }
+
+        return new Subscriber(
+            Uuid::fromString($row['id']),
+            $row['first_name'],
+            $row['last_name'],
+            $row['email'],
+            new DateTimeImmutable($row['subscribed_on'])
+        );
     }
 }
