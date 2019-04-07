@@ -28,6 +28,17 @@ final class Subscriber
         $this->subscribedOn = $subscribedOn;
     }
 
+    public static function subscribe(string $firstName, string $lastName, string $email): Subscriber
+    {
+        return new Subscriber(
+            Uuid::uuid4(),
+            $firstName,
+            $lastName,
+            $email,
+            new DateTimeImmutable()
+        );
+    }
+
     public function getId(): UuidInterface
     {
         return $this->id;
