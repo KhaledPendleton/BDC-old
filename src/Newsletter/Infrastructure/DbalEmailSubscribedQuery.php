@@ -2,7 +2,9 @@
 
 namespace BDC\Newsletter\Infrastructure;
 
-final class DbalEmailSubscribedQuery
+use BDC\Newsletter\Application\EmailSubscribedQuery;
+
+final class DbalEmailSubscribedQuery implements EmailSubscribedQuery
 {
     public function execute(string $email): bool
     {
