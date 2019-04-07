@@ -3,19 +3,34 @@
 namespace BDC\Newsletter\Domain;
 
 use DateTimeImmutable;
+use Ramsey\Uuid\UuidInterface;
+use Ramsey\Uuid\Uuid;
 
 final class Subscriber
 {
+    private $id;
     private $firstName;
     private $lastName;
     private $email;
     private $subscribedOn;
 
-    public function __construct(string $firstName, string $lastName, string $email, DateTimeImmutable $subscribedOn) {
+    public function __construct(
+        UuidInterface $id,
+        string $firstName,
+        string $lastName,
+        string $email,
+        DateTimeImmutable $subscribedOn
+    ) {
+        $this->id = $id;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->email = $email;
         $this->subscribedOn = $subscribedOn;
+    }
+
+    public function getId(): UuidInterface
+    {
+        return $this->id;
     }
     
     public function getFirstName(): string
