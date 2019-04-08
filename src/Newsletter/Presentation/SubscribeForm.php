@@ -3,6 +3,7 @@
 namespace BDC\Newsletter\Presentation;
 
 use BDC\Newsletter\Application\EmailSubscribedQuery;
+use BDC\Newsletter\Application\Subscribe;
 
 final class SubscribeForm
 {
@@ -49,5 +50,14 @@ final class SubscribeForm
     public function hasValidationErrors(): bool
     {
         return (count($this->getValidationErrors()) > 0);
+    }
+
+    public function toCommand(): Subscribe
+    {
+        return new Subscribe(
+            $this->firstName,
+            $this->lastName,
+            $this->email
+        );
     }
 }

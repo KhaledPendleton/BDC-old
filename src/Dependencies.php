@@ -21,7 +21,7 @@ use BDC\Framework\Dbal\ConnectionFactory;
 use BDC\Framework\Dbal\ConnectionParamContainer;
 use BDC\Framework\Rendering\TemplateDirectory;
 use BDC\Newsletter\Infrastructure\DbalEmailSubscribedQuery;
-use BDC\Newsletter\Domain\DbalSubscriberRepository;
+use BDC\Newsletter\Infrastructure\DbalSubscriberRepository;
 
 $dependencies = array();
 

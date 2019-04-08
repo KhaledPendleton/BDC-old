@@ -26,6 +26,6 @@ final class Subscribe
 
     public function getEmail(): string
     {
-        return $this->Email;
+        return $this->email;
     }
 }

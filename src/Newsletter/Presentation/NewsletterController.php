@@ -7,18 +7,22 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 use BDC\Framework\Rendering\TemplateRenderer;
+use BDC\Newsletter\Application\SubscribeHandler;
 
 final class NewsletterController
 {
     private $templateRenderer;
     private $subscribeFormFactory;
+    private $subscribeHandler;
 
     public function __construct(
         TemplateRenderer $templateRenderer,
-        SubscribeFormFactory $subscribeFormFactory
+        SubscribeFormFactory $subscribeFormFactory,
+        SubscribeHandler $subscribeHandler
     ) {
         $this->templateRenderer = $templateRenderer;
         $this->subscribeFormFactory = $subscribeFormFactory;
+        $this->subscribeHandler = $subscribeHandler;
     }
     
     // Show current newsletter
@@ -46,6 +50,8 @@ final class NewsletterController
             // TODO: Handle this
             return new Response('error', Response::HTTP_NOT_ACCEPTABLE);
         }
+
+        $this->subscribeHandler->handle($form->toCommand());
 
         $firstName = $request->get('first-name');
         $response = new RedirectResponse('/newsletter/success?first-name='.$firstName);

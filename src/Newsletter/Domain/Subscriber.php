@@ -56,7 +56,7 @@ final class Subscriber
 
     public function getEmail(): string
     {
-        return $this->Email;
+        return $this->email;
     }
 
     public function getSubscriptionDate(): DateTimeImmutable

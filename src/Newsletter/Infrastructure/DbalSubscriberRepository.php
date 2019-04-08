@@ -3,6 +3,7 @@
 namespace BDC\Newsletter\Infrastructure;
 
 use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\Types\Type;
 use Ramsey\Uuid\Uuid;
 
 use BDC\Newsletter\Domain\SubscriberRepository;
