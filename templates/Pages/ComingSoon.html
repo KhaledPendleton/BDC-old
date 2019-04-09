@@ -1,0 +1,23 @@
+{% extends 'Layouts/Default.html' %}
+
+{% block title %}
+COMING SOON
+{% endblock %}
+
+{% block content %}
+<main class="u-fixed u-absolute--center">
+    <header class="logoBox u-textAlign--center">
+        <img class="logo" src="/images/bdc-full.svg" alt="Binghamton Design Collective" />
+    </header>
+    <div class="messageBox">
+        <h2 class="u-textAlign--center messageBox-title">Coming Soon</h2>
+        <p class="u-textAlign--center messageBox-content">Sign up to recieve updates regarding the organization.</p>
+    </div>
+    <form action="/newsletter/subscribe" method="POST">
+        <input class="u-noBackground u-border u-boxSizing--borderBox half" type="text" name="first-name" placeholder="First Name" /><!-- REQUIRED BETWEEN EVERY .HALF INLINE BLOCK
+        --><input class="u-noBackground u-border u-boxSizing--borderBox half" type="text" name="last-name" placeholder="Last Name" />
+        <input class="u-noBackground u-border u-boxSizing--borderBox" type="email" name="email" placeholder="Email" />
+        <input class="u-block u-noBackground u-border u-cursor--pointer" type="submit" value="SIGN UP" />
+    </form>
+</main>
+{% endblock %}
