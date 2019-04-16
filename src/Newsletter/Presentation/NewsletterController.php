@@ -12,6 +12,8 @@ use BDC\Framework\Rendering\TemplateRenderer;
 use BDC\Newsletter\Application\SubscribeHandler;
 use BDC\Framework\Csrf\StoredTokenValidator;
 use BDC\Framework\Csrf\Token;
+use BDC\Error\Application\UnprocessableEntityError;
+use BDC\Error\Application\ForbiddenError;
 
 final class NewsletterController
 {
@@ -54,17 +56,21 @@ final class NewsletterController
             'subscribe',
             new Token((string)$request->get('token'))
         )) {
-            $errors = 'Invalid token.';
-            // TODO: Handle this
-            return new Response('error', Response::HTTP_NOT_ACCEPTABLE);
+            $data = array();
+            $data['error'] = ForbiddenError::create();
+
+            $content = $this->templateRenderer->render('Pages/Error.html', $data);
+            return new Response($content, Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
         $form = $this->subscribeFormFactory->createFromRequest($request);
 
         if ($form->hasValidationErrors()) {
-            $errors = $form->getValidationErrors();
-            // TODO: Handle this
-            return new Response('error', Response::HTTP_NOT_ACCEPTABLE);
+            $data = array();
+            $data['error'] = UnprocessableEntityError::create();
+
+            $content = $this->templateRenderer->render('Pages/Error.html', $data);
+            return new Response($content, Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
         $this->subscribeHandler->handle($form->toCommand());
