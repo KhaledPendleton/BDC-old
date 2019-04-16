@@ -2,27 +2,34 @@
 
 namespace BDC\Newsletter\Presentation;
 
+// External packages
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
+// Internal packages
 use BDC\Framework\Rendering\TemplateRenderer;
 use BDC\Newsletter\Application\SubscribeHandler;
+use BDC\Framework\Csrf\StoredTokenValidator;
+use BDC\Framework\Csrf\Token;
 
 final class NewsletterController
 {
     private $templateRenderer;
     private $subscribeFormFactory;
     private $subscribeHandler;
+    private $storedTokenValidator;
 
     public function __construct(
         TemplateRenderer $templateRenderer,
         SubscribeFormFactory $subscribeFormFactory,
-        SubscribeHandler $subscribeHandler
+        SubscribeHandler $subscribeHandler,
+        StoredTokenValidator $storedTokenValidator
     ) {
         $this->templateRenderer = $templateRenderer;
         $this->subscribeFormFactory = $subscribeFormFactory;
         $this->subscribeHandler = $subscribeHandler;
+        $this->storedTokenValidator = $storedTokenValidator;
     }
     
     // Show current newsletter
@@ -43,6 +50,15 @@ final class NewsletterController
 
     public function subscribe(Request $request, array $vars): Response
     {
+        if (!$this->storedTokenValidator->validate(
+            'subscribe',
+            new Token((string)$request->get('token'))
+        )) {
+            $errors = 'Invalid token.';
+            // TODO: Handle this
+            return new Response('error', Response::HTTP_NOT_ACCEPTABLE);
+        }
+
         $form = $this->subscribeFormFactory->createFromRequest($request);
 
         if ($form->hasValidationErrors()) {

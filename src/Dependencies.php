@@ -12,6 +12,8 @@ use Doctrine\DBAL\Connection;
 use BDC\Framework\Rendering\TemplateRenderer;
 use BDC\Newsletter\Application\EmailSubscribedQuery;
 use BDC\Newsletter\Domain\SubscriberRepository;
+use BDC\Framework\Csrf\TokenStorage;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 // Factories
 use BDC\Framework\Rendering\TwigTemplateRendererFactory;
@@ -22,6 +24,8 @@ use BDC\Framework\Dbal\ConnectionParamContainer;
 use BDC\Framework\Rendering\TemplateDirectory;
 use BDC\Newsletter\Infrastructure\DbalEmailSubscribedQuery;
 use BDC\Newsletter\Infrastructure\DbalSubscriberRepository;
+use BDC\Framework\Csrf\SymfonySessionTokenStorage;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 $dependencies = array();
 
@@ -54,5 +58,11 @@ $dependencies[TemplateRenderer::class] = factory([TwigTemplateRendererFactory::c
 // Newsletter
 $dependencies[EmailSubscribedQuery::class] = get(DbalEmailSubscribedQuery::class);
 $dependencies[SubscriberRepository::class] = get(DbalSubscriberRepository::class);
+
+// Csrf
+$dependencies[TokenStorage::class] = get(SymfonySessionTokenStorage::class);
+
+// Sessions
+$dependencies[SessionInterface::class] = get(Session::class);
 
 return $dependencies;
