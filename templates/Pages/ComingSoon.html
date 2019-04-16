@@ -13,12 +13,6 @@ COMING SOON
         <h2 class="u-textAlign--center messageBox-title">Coming Soon</h2>
         <p class="u-textAlign--center messageBox-content">Sign up to recieve updates regarding the organization.</p>
     </div>
-    <form action="/newsletter/subscribe" method="POST">
-        <input class="u-noBackground u-border u-boxSizing--borderBox half" type="text" name="first-name" placeholder="First Name" autocomplete="off" /><!-- REQUIRED BETWEEN EVERY .HALF INLINE BLOCK
-        --><input class="u-noBackground u-border u-boxSizing--borderBox half" type="text" name="last-name" placeholder="Last Name" autocomplete="off" />
-        <input class="u-noBackground u-border u-boxSizing--borderBox" type="email" name="email" placeholder="Email" />
-        <input class="u-noBackground u-border u-boxSizing--borderBox" type="hidden" name="token" value="{{ getToken('subscribe') }}" />
-        <input class="u-block u-noBackground u-border u-cursor--pointer" type="submit" value="SIGN UP" />
-    </form>
+    {{ include('Forms/NewsletterSubscribe.html') }}
 </main>
 {% endblock %}
